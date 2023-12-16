@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Converter</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background: url('https://i.pinimg.com/564x/78/ae/6d/78ae6d370f98d043c94fce389d17a0e5.jpg');
+            margin: 0;
+            padding: 0;            flex-direction: column;
+            align-items: center; /* Center content horizontally */
+            justify-content: center; /* Center content vertically */
+            height: 100vh;
+        }
+
+        h1, h2, h3, p {
+            color: #fefffc;
+            text-align: left;
+        }
+
+        #converter {
+            padding: 12px 24px;
+            background-color: #da7b7b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Adjusted width for mobile */
+            max-width: 600px; /* Limit maximum width for readability */
+        }
+
+        /* Add more styles as needed */
+        .button {
+            display: block; /* Ensure buttons take full width */
+            margin-top: 10px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            color: #da7b7b;
+            background-color: #000000;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #fefffc;
+            color: #000000;
+        }
+        #paru{
+            margin-top: 1000px;
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid #ffffff;
+            color: #da7b7b;
+            background-color: #000000;
+            border-radius: 4px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+    </style>
+</head>
+
+<body >
+    <div id="head"></div>
+    <div id="body">
+        <div id="converter">
+           
+            <div id="paru">
+                <h1 id="converter">Weight Converter</h1><br><h1 style="color: #fefffc;">Weight Conversion Across Planets Considering Varying Gravitational Acceleration</h1>
+            <p class="para">
+                <h2 class="para">Definition:</h2>
+                The seminar explores the concept of weight conversion in the context of celestial bodies, particularly planets,
+                where the gravitational acceleration differs from Earth. Weight, typically measured in kilograms or pounds on
+                Earth, is influenced by the force of gravity. As individuals may weigh differently on other planets due to
+                distinct gravitational accelerations, this seminar delves into the mathematical methods and considerations
+                involved in accurately converting weights across various celestial bodies.
+            </p>
+            <h2 class="para">Explanation:</h2>
+            <p class="para">
+                The weight of an object is directly proportional to the gravitational force acting upon it. On Earth, the standard
+                gravitational acceleration is approximately 9.8 meters per second squared. However, this value varies
+                significantly on other planets and celestial bodies.
+            </p>
+            <h3 class="para">Gravitational Acceleration on Different Planets:</h3>
+            <p class="para">
+                Discuss the varying gravitational accelerations on different planets, moons, and celestial bodies within our solar
+                system. Provide an overview of the factors influencing these gravitational variations.
+            </p>
+            <h3 class="para">Weight Conversion Formula:</h3>
+            <p class="para">
+                Introduce the formula or method for converting weight from one planet to another, considering the difference in
+                gravitational accelerations. Discuss the significance of understanding weight conversion, especially in the context
+                of space exploration and colonization.
+            </p>
+            <h3 class="para">Application and Implications:</h3>
+            <p class="para">
+                Explore practical applications of weight conversion, such as determining the effectiveness of exercise regimes on
+                different planets, understanding the challenges of space travel, and planning for extraterrestrial missions.
+                Discuss the implications of weight differences for human health and the design of equipment used in space
+                exploration.
+            </p>
+            <h3 class="para">Comparative Analysis:</h3>
+            <p class="para">
+                Provide a comparative analysis of how weights would differ for common objects or individuals on Earth compared to
+                other planets in our solar system. Use examples and scenarios to illustrate the practical aspects of weight
+                conversion.
+            </p>
+            <h3 class="para">Future Considerations:</h3>
+            <p class="para">
+                Discuss potential advancements in technology and scientific understanding that may impact weight conversion
+                calculations in the future. Explore how this knowledge contributes to our broader understanding of the universe and
+                informs space exploration initiatives.
+            </p></div>
+            <label for="fromPlanet">From:</label>
+            <select id="fromPlanet" class="button"></select>
+
+            <label for="weight">Weight:</label>
+            <input type="number" id="weight" placeholder="Enter weight in kg" class="button">
+
+            <label for="toPlanet">To:</label>
+            <select id="toPlanet" class="button"></select>
+
+            <button onclick="convertWeight()" class="button">Convert</button>
+
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script>
+        function convertWeight() {
+            const fromPlanet = document.getElementById('fromPlanet').value;
+            const toPlanet = document.getElementById('toPlanet').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+
+            const gravitationalAccelerations = {
+                earth: 9.8,
+                mercury: 3.7,
+                venus: 8.87,
+                mars: 3.71,
+                jupiter: 24.79,
+                saturn: 10.44,
+                uranus: 8.69,
+                neptune: 11.15,
+                pluto: 0.62,
+                sun: 274,
+            };
+
+            const fromGravity = gravitationalAccelerations[fromPlanet];
+            const toGravity = gravitationalAccelerations[toPlanet];
+
+            if (!isNaN(weight)) {
+                const convertedWeight = weight * (toGravity / fromGravity);
+                document.getElementById('result').innerText = `Weight on ${toPlanet}: ${convertedWeight.toFixed(2)} kg`;
+            } else {
+                document.getElementById('result').innerText = 'Please enter a valid weight.';
+            }
+        }
+
+        // Populate planet options
+        const planetSelects = document.querySelectorAll('#fromPlanet, #toPlanet');
+        const planets = ['earth', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'sun'];
+
+        planets.forEach(planet => {
+            planetSelects.forEach(select => {
+                const option = document.createElement('option');
+                option.value = planet;
+                option.text = planet.charAt(0).toUpperCase() + planet.slice(1);
+                select.add(option);
+            });
+        });
+    </script>
+</body>
+
+</html>
